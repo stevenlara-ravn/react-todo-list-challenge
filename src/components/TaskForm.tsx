@@ -70,7 +70,7 @@ function CreateTaskForm({ onClose }: { onClose: () => void }) {
 }
 
 function EditTaskForm({ task, onClose }: { task: Task, onClose: () => void }) {
-  const updateTask = useTasksStore((state: TasksStore) => state.updateTask);
+  const updateTasks = useTasksStore((state: TasksStore) => state.updateTasks);
 
   const {
     register,
@@ -96,7 +96,7 @@ function EditTaskForm({ task, onClose }: { task: Task, onClose: () => void }) {
     });
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
 
-    updateTask(task.id, updatedData);
+    updateTasks(updatedTasks);
 
     reset();
     onClose();

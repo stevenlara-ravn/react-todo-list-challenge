@@ -1,10 +1,10 @@
-import { useTasksStore } from "../stores/tasks";
+import { TasksStore, useTasksStore } from "../stores/tasks";
 import { Task } from "../types/Task";
 import TaskCard from "./TaskCard";
 
 
 export default function TaskList() {
-  const tasks = useTasksStore((state: any) => state.tasks) as Task[];
+  const tasks = useTasksStore((state: TasksStore) => state.tasks) as Task[];
 
   return (
     <ul className="flex flex-col items-center w-full h-full gap-5 overflow-auto">
