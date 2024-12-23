@@ -1,7 +1,8 @@
-export default function App() {
+sfunction App() {
   return (
-    <div>
-      <p>Hello World</p>
-    </div>
-  );
+    <>
+    </>
+  )
 }
+
+export default App
