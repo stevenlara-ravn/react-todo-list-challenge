@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useId } from "react";
 import { useForm } from "react-hook-form";
+import { v4 as uuidv4 } from "uuid";
 import { taskSchema } from "../config/validation/taskSchema";
 import { useTasksStore } from "../stores/tasks";
 import { TaskFormData, TasksStore } from "../types/Task";
@@ -8,7 +8,7 @@ import TaskFormLayout from "./TaskFormLayout";
 
 export default function CreateTaskForm({ onClose }: { onClose: () => void }) {
   const addTask = useTasksStore((state: TasksStore) => state.addTask);
-  const id = useId();
+  const id = uuidv4();
 
   const {
     register,
@@ -21,7 +21,7 @@ export default function CreateTaskForm({ onClose }: { onClose: () => void }) {
 
   const onSubmit = (data: TaskFormData) => {
     const newTask = {
-      id,
+      id: id,
       title: data.title,
       priority: data.priority,
       storyPoints: data.storyPoints,

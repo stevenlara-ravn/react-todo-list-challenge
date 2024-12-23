@@ -35,6 +35,9 @@ dependencies:
   use-debounce:
     specifier: ^10.0.4
     version: 10.0.4(react@18.3.1)
+  uuid:
+    specifier: ^11.0.3
+    version: 11.0.3
   zod:
     specifier: ^3.24.1
     version: 3.24.1
@@ -2604,6 +2607,11 @@ packages:
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+
+  /uuid@11.0.3:
+    resolution: {integrity: sha512-d0z310fCWv5dJwnX1Y/MncBAqGMKEzlBb1AOf7z9K8ALnd0utBX/msg/fA0+sbyN1ihbMsLhrBlnl1ak7Wa0rg==}
+    hasBin: true
+    dev: false
 
   /vite@6.0.5(@types/node@22.10.2):
     resolution: {integrity: sha512-akD5IAH/ID5imgue2DYhzsEwCi0/4VKY31uhMLEYJwPP4TiUp8pL5PIK+Wo7H8qT8JY9i+pVfPydcFPYD1EL7g==}
