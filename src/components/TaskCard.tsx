@@ -10,6 +10,10 @@ export default function TaskCard({ task }: { task: Task }) {
   const deleteTask = useTasksStore((state: any) => state.deleteTask);
 
   const handleDelete = (taskId: string) => {
+    const existingTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+    const updatedTasks = existingTasks.filter((task: Task) => task.id !== taskId);
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+
     deleteTask(taskId);
   }
 

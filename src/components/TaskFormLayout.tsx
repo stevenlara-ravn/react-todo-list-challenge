@@ -1,5 +1,5 @@
 import { SquareX } from "lucide-react";
-import { Task } from "../types/Task";
+import { Task, TaskFormMode } from "../types/Task";
 
 interface FormLayoutProps {
   handleSubmit: (data: any) => void;
@@ -8,6 +8,7 @@ interface FormLayoutProps {
   errors: any;
   register: any;
   dataItem?: Task
+  formMode: TaskFormMode
 }
 
 export default function TaskFormLayout({
@@ -16,7 +17,8 @@ export default function TaskFormLayout({
   onSubmit,
   errors,
   register,
-  dataItem
+  dataItem,
+  formMode
 }: FormLayoutProps
 ) {
   return (
@@ -112,7 +114,7 @@ export default function TaskFormLayout({
       <input
         className="bg-black rounded-lg p-2 text-white w-full mt-2 cursor-pointer"
         type="submit"
-        value="Create Task"
+        value={formMode === 'create' ? "Create Task" : "Update Task"}
       />
     </form>
   )

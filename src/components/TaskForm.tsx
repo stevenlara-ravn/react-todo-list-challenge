@@ -44,6 +44,11 @@ function CreateTaskForm({ onClose }: { onClose: () => void }) {
       assignee: data.assignee,
       dueDate: data.dueDate
     };
+
+    const existingTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+    const updatedTasks = [...existingTasks, newTask];
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+
     addTask(newTask);
 
     reset();
@@ -58,6 +63,7 @@ function CreateTaskForm({ onClose }: { onClose: () => void }) {
         onSubmit={onSubmit}
         errors={errors}
         register={register}
+        formMode="create"
       />
     </aside>
   );
@@ -80,6 +86,16 @@ function EditTaskForm({ task, onClose }: { task: Task, onClose: () => void }) {
       return;
     }
     const updatedData = { id: task.id, ...data };
+
+    const existingTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+    const updatedTasks = existingTasks.map((taskItem: Task) => {
+      if (task.id === taskItem.id) {
+        return updatedData;
+      }
+      return taskItem;
+    });
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+
     updateTask(task.id, updatedData);
 
     reset();
@@ -95,6 +111,7 @@ function EditTaskForm({ task, onClose }: { task: Task, onClose: () => void }) {
         errors={errors}
         register={register}
         dataItem={task}
+        formMode="edit"
       />
     </aside>
   );

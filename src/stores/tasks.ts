@@ -12,32 +12,19 @@ export interface TasksStore {
 export const useTasksStore = create<TasksStore>((set) => ({
     tasks: JSON.parse(localStorage.getItem("tasks") || "[]"),
     addTask: (newTask: Task) => {
-        const existingTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
-
-        const updatedTasks = [...existingTasks, newTask];
-
-        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-        set({ tasks: updatedTasks });
+        set((state) => ({ tasks: [...state.tasks, newTask] }));
     },
     updateTask: (taskId: string, updatedTask: Task) => {
-        const existingTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
-
-        const updatedTasks = existingTasks.map((task: Task) => {
-            if (task.id === taskId) {
-                return updatedTask;
-            }
-            return task;
-        });
-
-        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-        set({ tasks: updatedTasks });
+        set((state) => ({
+            tasks: [...state.tasks.map((task: Task) => {
+                if (task.id === taskId) {
+                    return updatedTask;
+                }
+                return task
+            })]
+        }));
     },
     deleteTask: (taskId: string) => {
-        const existingTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
-
-        const updatedTasks = existingTasks.filter((task: Task) => task.id !== taskId);
-
-        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-        set({ tasks: updatedTasks });
+        set((state) => ({ tasks: [...state.tasks.filter((task: Task) => task.id !== taskId)] }));
     },
 }))
