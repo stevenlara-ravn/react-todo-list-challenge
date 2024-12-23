@@ -9,7 +9,7 @@ export default function CreateTaskFloatingButton() {
   return (
     <>
       <button
-        className="bg-black rounded-lg p-2 fixed text-white bottom-9"
+        className="nm-inset-slate-700-xl rounded-lg p-4 fixed text-white bottom-6 hover:nm-inset-slate-500-xl"
         onClick={() => setShowModal(true)}
       >
         <Plus size={30} color="currentColor" />

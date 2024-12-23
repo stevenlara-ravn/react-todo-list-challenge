@@ -1,4 +1,4 @@
-import { SquareX } from "lucide-react";
+import { X } from "lucide-react";
 import { Task, TaskFormMode } from "../types/Task";
 
 interface FormLayoutProps {
@@ -23,15 +23,15 @@ export default function TaskFormLayout({
 ) {
   return (
     <form
-      className="relative flex flex-col justify-center items-stretch w-96 h-[40rem] bg-gray-300 p-10 gap-3"
+      className="relative flex flex-col justify-center items-stretch w-96 h-[40rem] nm-flat-slate-500-xl p-10 gap-3 text-slate-200"
       onSubmit={handleSubmit(onSubmit)}
     >
       <button
         type="button"
         onClick={onClose}
-        className="absolute top-0 right-0 p-2"
+        className="absolute top-3 right-3 p-1 nm-flat-slate-500-sm rounded-xl"
       >
-        <SquareX size={25} />
+        <X size={25} color="white" />
       </button>
 
       <label className="text-xl flex flex-col justify-stretch">
@@ -39,7 +39,7 @@ export default function TaskFormLayout({
         <input
           type="text"
           {...register("title")}
-          className="border-2 border-black rounded-lg p-2 text-black"
+          className="nm-inset-slate-500-sm rounded-lg p-2 text-slate-300 focus:outline-none focus:text-white focus:nm-inset-slate-500"
           placeholder="Buy some fruits"
           defaultValue={dataItem?.title}
         />
@@ -52,9 +52,8 @@ export default function TaskFormLayout({
         Task Priority
         <select
           {...register("priority")}
-          className="border-2 border-black rounded-lg p-2 text-black"
+          className="nm-inset-slate-500-sm rounded-lg p-2 text-slate-300 focus:outline-none focus:text-white focus:nm-inset-slate-500"
         >
-
           {
             dataItem?.priority &&
             <option value={dataItem.priority}>{dataItem.priority}</option>
@@ -74,7 +73,7 @@ export default function TaskFormLayout({
         <input
           type="number"
           {...register("storyPoints")}
-          className="border-2 border-black rounded-lg p-2 text-black"
+          className="nm-inset-slate-500-sm rounded-lg p-2 text-slate-300 focus:outline-none focus:text-white focus:nm-inset-slate-500"
           placeholder="From 1 to 20"
           defaultValue={dataItem?.storyPoints}
         />
@@ -88,7 +87,7 @@ export default function TaskFormLayout({
         <input
           type="text"
           {...register("assignee")}
-          className="border-2 border-black rounded-lg p-2 text-black"
+          className="nm-inset-slate-500-sm rounded-lg p-2 text-slate-300 focus:outline-none focus:text-white focus:nm-inset-slate-500"
           placeholder="username"
           defaultValue={dataItem?.assignee}
         />
@@ -102,7 +101,7 @@ export default function TaskFormLayout({
         <input
           type="date"
           {...register("dueDate")}
-          className="border-2 border-black rounded-lg p-2 text-black"
+          className="nm-inset-slate-500-sm rounded-lg p-2 text-slate-300 focus:outline-none focus:text-white focus:nm-inset-slate-500"
           placeholder="Enter Task Due Date"
           defaultValue={dataItem?.dueDate}
         />
@@ -112,7 +111,7 @@ export default function TaskFormLayout({
       </label>
 
       <input
-        className="bg-black rounded-lg p-2 text-white w-full mt-2 cursor-pointer"
+        className="nm-flat-slate-500-lg rounded-lg p-2 text-slate-200 w-full mt-2 cursor-pointer"
         type="submit"
         value={formMode === 'create' ? "Create Task" : "Update Task"}
       />

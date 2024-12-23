@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
-import { TasksStore, useTasksStore } from "../stores/tasks";
-import { Task } from "../types/Task";
+import { useTasksStore } from "../stores/tasks";
+import { Task, TasksStore } from "../types/Task";
 
 export default function SearchTask() {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -32,7 +32,7 @@ export default function SearchTask() {
   return (
     <div className="flex flex-col items-center justify-center w-full h-14">
       <input
-        className="w-full h-14 px-5 nm-flat-white-sm rounded-xl"
+        className="w-full h-14 px-5 nm-inset-slate-500-sm rounded-xl placeholder:text-slate-400 focus:outline-none focus:nm-inset-slate-500 focus:text-white"
         type="text"
         placeholder="Let's find something for today"
         onChange={handleSearch}

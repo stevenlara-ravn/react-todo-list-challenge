@@ -1,14 +1,5 @@
 import { create } from "zustand";
-import { Task } from "../types/Task";
-
-export interface TasksStore {
-    allTasks: Task[];
-    tasks: Task[];
-    updateTasks: (updatedTasks: Task[]) => void;
-    addTask: (newTask: Task) => void;
-    deleteTask: (taskId: string) => void;
-    resetTasks: () => void;
-}
+import { Task, TasksStore } from "../types/Task";
 
 export const useTasksStore = create<TasksStore>((set) => ({
     allTasks: JSON.parse(localStorage.getItem("tasks") || "[]"),
