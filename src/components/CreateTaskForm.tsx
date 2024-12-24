@@ -20,18 +20,7 @@ export default function CreateTaskForm({ onClose }: { onClose: () => void }) {
   });
 
   const onSubmit = (data: TaskFormData) => {
-    const newTask = {
-      id: id,
-      title: data.title,
-      priority: data.priority,
-      storyPoints: data.storyPoints,
-      assignee: data.assignee,
-      dueDate: data.dueDate
-    };
-
-    const existingTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
-    const updatedTasks = [...existingTasks, newTask];
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    const newTask = { id: id, ...data };
 
     addTask(newTask);
 

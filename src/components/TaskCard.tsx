@@ -1,21 +1,13 @@
 import { Pencil, Trash2 } from "lucide-react";
-import { useState } from "react";
-import { createPortal } from "react-dom";
+import { useModalStore } from "../stores/modal";
 import { useTasksStore } from "../stores/tasks";
-import { Task } from "../types/Task";
-import TaskForm from "./TaskForm";
+
+import { Task, TasksStore } from "../types/Task";
+import { ModalStore } from "../types/Modal";
 
 export default function TaskCard({ task }: { task: Task }) {
-  const [showModal, setShowModal] = useState(false);
-  const deleteTask = useTasksStore((state: any) => state.deleteTask);
-
-  const handleDelete = (taskId: string) => {
-    const existingTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
-    const updatedTasks = existingTasks.filter((task: Task) => task.id !== taskId);
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-
-    deleteTask(taskId);
-  }
+  const setShowModal = useModalStore((state: ModalStore) => state.setShowModal);
+  const deleteTask = useTasksStore((state: TasksStore) => state.deleteTask);
 
   return (
     <li className="flex flex-row items-center justify-between w-full p-3 rounded-lg nm-flat-slate-500 text-slate-200">
@@ -51,24 +43,17 @@ export default function TaskCard({ task }: { task: Task }) {
       <div className="flex flex-row items-center justify-between h-full gap-3">
         <button
           className="p-2 rounded-full nm-flat-slate-500 active:nm-inset-slate-500"
-          onClick={() => setShowModal(true)}
+          onClick={() => setShowModal(true, 'edit', task)}
         >
           <Pencil size={20} />
         </button>
         <button
           className="p-2 rounded-full nm-flat-slate-500 active:nm-inset-slate-500"
-          onClick={() => handleDelete(task.id as string)}
+          onClick={() => deleteTask(task.id as string)}
         >
           <Trash2 size={20} />
         </button>
       </div>
-
-      {
-        showModal && createPortal(
-          <TaskForm mode="edit" task={task} onClose={() => setShowModal(false)} />,
-          document.body
-        )
-      }
     </li>
   )
 }

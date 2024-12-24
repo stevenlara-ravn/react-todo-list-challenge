@@ -1,8 +1,10 @@
 import CreateTaskFloatingButton from "./components/CreateTaskFloatingButton"
 import SearchTask from "./components/SearchTask"
+import TaskForm from "./components/TaskForm"
 import TaskList from "./components/TaskList"
 
 export default function App() {
+
   return (
     <div className="flex flex-col items-center justify-center max-w-7xl w-full h-screen mx-auto py-10 px-5">
       <div className="flex flex-col items-center justify-between max-w-4xl w-full h-[100rem] nm-flat-slate-500-sm px-10">
@@ -17,6 +19,8 @@ export default function App() {
         </main>
 
         <CreateTaskFloatingButton />
+
+        <TaskForm />
       </div>
     </div>
   )

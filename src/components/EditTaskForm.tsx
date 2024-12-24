@@ -30,7 +30,6 @@ export default function EditTaskForm({ task, onClose }: { task: Task, onClose: (
       }
       return taskItem;
     });
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
 
     updateTasks(updatedTasks);
 

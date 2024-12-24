@@ -1,10 +1,10 @@
 import { Plus } from "lucide-react";
-import { useState } from "react";
-import { createPortal } from "react-dom";
-import TaskForm from "./TaskForm";
+import { useModalStore } from "../stores/modal";
+import { ModalStore } from "../types/Modal";
+
 
 export default function CreateTaskFloatingButton() {
-  const [showModal, setShowModal] = useState(false);
+  const setShowModal = useModalStore((state: ModalStore) => state.setShowModal)
 
   return (
     <>
@@ -14,12 +14,6 @@ export default function CreateTaskFloatingButton() {
       >
         <Plus size={30} color="currentColor" />
       </button>
-      {
-        showModal && createPortal(
-          <TaskForm onClose={() => setShowModal(false)} />,
-          document.body
-        )
-      }
     </>
   )
 }

@@ -1,12 +1,13 @@
 import { X } from "lucide-react";
-import { Task, TaskFormMode } from "../types/Task";
+import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
+import { Task, TaskFormData, TaskFormMode } from "../types/Task";
 
 interface FormLayoutProps {
-  handleSubmit: (data: any) => any;
+  handleSubmit: UseFormHandleSubmit<TaskFormData>;
   onClose: () => void;
-  onSubmit: (data: any) => void;
-  errors: any;
-  register: any;
+  onSubmit: (data: TaskFormData) => void
+  errors: FieldErrors<TaskFormData>
+  register: UseFormRegister<TaskFormData>
   dataItem?: Task
   formMode: TaskFormMode
 }
