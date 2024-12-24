@@ -1,11 +1,13 @@
 import { Plus } from "lucide-react";
-import { useModalStore } from "../stores/modal";
 import { ModalStore } from "../types/Modal";
 
 
-export default function CreateTaskFloatingButton() {
-  const setShowModal = useModalStore((state: ModalStore) => state.setShowModal)
-
+export default function CreateTaskFloatingButton({
+  setShowModal
+}: {
+  setShowModal: ModalStore['setShowModal']
+}
+) {
   return (
     <>
       <button

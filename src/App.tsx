@@ -2,8 +2,10 @@ import CreateTaskFloatingButton from "./components/CreateTaskFloatingButton"
 import SearchTask from "./components/SearchTask"
 import TaskForm from "./components/TaskForm"
 import TaskList from "./components/TaskList"
+import { useModalStore } from "./stores/modal"
 
 export default function App() {
+  const { showModal, setShowModal, mode, task } = useModalStore((state) => state)
 
   return (
     <div className="flex flex-col items-center justify-center max-w-7xl w-full h-screen mx-auto py-10 px-5">
@@ -18,9 +20,14 @@ export default function App() {
           <TaskList />
         </main>
 
-        <CreateTaskFloatingButton />
+        <CreateTaskFloatingButton setShowModal={setShowModal} />
 
-        <TaskForm />
+        <TaskForm
+          showModal={showModal}
+          setShowModal={setShowModal}
+          mode={mode}
+          task={task}
+        />
       </div>
     </div>
   )

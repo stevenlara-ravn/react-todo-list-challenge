@@ -1,6 +1,5 @@
 import { createPortal } from "react-dom";
-import { useModalStore } from "../stores/modal";
-import { FormSelectorProps } from "../types/Modal";
+import { FormSelectorProps, ModalStore } from "../types/Modal";
 import CreateTaskForm from "./CreateTaskForm";
 import EditTaskForm from "./EditTaskForm";
 
@@ -16,9 +15,7 @@ const FormSelector = ({ mode = 'create', task, onClose }: FormSelectorProps) => 
   }
 }
 
-export default function TaskForm() {
-  const { showModal, setShowModal, mode, task } = useModalStore((state) => state)
-
+export default function TaskForm({ showModal, setShowModal, mode, task }: ModalStore) {
   return (
     showModal && createPortal(
       <FormSelector

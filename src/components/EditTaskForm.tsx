@@ -2,11 +2,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { taskSchema } from "../config/validation/taskSchema";
 import { useTasksStore } from "../stores/tasks";
-import { Task, TaskFormData, TasksStore } from "../types/Task";
+import { Task, TaskFormData } from "../types/Task";
 import TaskFormLayout from "./TaskFormLayout";
 
 export default function EditTaskForm({ task, onClose }: { task: Task, onClose: () => void }) {
-  const updateTasks = useTasksStore((state: TasksStore) => state.updateTasks);
+  const { tasks: existingTasks, updateTasks } = useTasksStore((state) => state);
 
   const {
     register,
@@ -23,7 +23,6 @@ export default function EditTaskForm({ task, onClose }: { task: Task, onClose: (
     }
     const updatedData = { id: task.id, ...data };
 
-    const existingTasks = JSON.parse(localStorage.getItem("tasks") || "[]");
     const updatedTasks = existingTasks.map((taskItem: Task) => {
       if (task.id === taskItem.id) {
         return updatedData;
